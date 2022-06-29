@@ -9,7 +9,7 @@ public static void main(String[] args) throws UnknownHostException, IOException 
     PortScan portScan = new PortScan();
 
 
-    int timeout = 150; 
+    int timeout = 151; 
     int[] ip = {192,168,0,1};   // ip address in array
     int[] endIp = {192,168,0,4};
 
