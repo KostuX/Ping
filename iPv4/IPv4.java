@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 
@@ -40,7 +41,7 @@ public static void test() throws UnknownHostException {
 	  
 	  long addressLong = ipToLong(address);
 	  
-	  System.out.println(ipLo);
+	 // System.out.println(ipLo);
 	  
 	for (long i = 0 ; i < 300; i++) {
 	
@@ -48,19 +49,23 @@ public static void test() throws UnknownHostException {
 		
 		
 	}
-	ipRange.stream()
+	
+	
+	
+	
+ipRange.stream()
 	.filter(i->{
 		try {
 			return i.isReachable(200);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
-	}).forEach(System.out::println);
+		} catch (IOException e) { e.printStackTrace(); }
+		return true;
+	})
+	.forEach(System.out::println);;
 	
 	
-		
+	
+	
+	
 	}
 
 
