@@ -30,20 +30,20 @@ List<InetAddress> ipReachable = new ArrayList<>();
 
 public static void test() throws UnknownHostException {
 	
-	System.out.println("Getting IPs");
+	System.out.println("Getting IPs\n");
 	
 	
 	
-	  long ipLo = ipToLong(InetAddress.getByName("192.200.0.0"));
+
 	  
 	  
 	  InetAddress address = InetAddress.getByName("192.168.0.1");
 	  
 	  long addressLong = ipToLong(address);
 	  
-	 // System.out.println(ipLo);
+
 	  
-	for (long i = 0 ; i < 300; i++) {
+	for (long i = 0 ; i < 254; i++) {
 	
 		IPv4.ipRange.add(InetAddress.getByName("" + addressLong++ ));	
 		
@@ -56,7 +56,7 @@ public static void test() throws UnknownHostException {
 ipRange.stream()
 	.filter(i->{
 		try {
-			return i.isReachable(200);
+			return i.isReachable(10);
 		} catch (IOException e) { e.printStackTrace(); }
 		return true;
 	})
@@ -83,12 +83,6 @@ ipRange.stream()
         return result;
     }
 
-    public static void scan() throws UnknownHostException {
-        long ipLo = ipToLong(InetAddress.getByName("192.200.0.0"));
-        long ipHi = ipToLong(InetAddress.getByName("192.255.0.0"));
-        long ipToTest = ipToLong(InetAddress.getByName("192.200.3.0"));
 
-        System.out.println(ipToTest >= ipLo && ipToTest <= ipHi);
-    }
 
 }
