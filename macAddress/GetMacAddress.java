@@ -1,3 +1,4 @@
+package macAddress;
 public class GetMacAddress {
 
     public String extractMAC(String  input){

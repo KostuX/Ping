@@ -1,3 +1,4 @@
+package iPv4;
 import java.io.IOException;
 import java.net.*;
 import java.util.*;
@@ -21,7 +22,7 @@ scan();
                 if (inet.isReachable(timeout)) 
                 {
                     String hostIP = inet.getHostAddress() ;
-                   System.out.println("IP: " + inet + "\tHostName: " + inet.getCanonicalHostName()+ " \tMAC: "+MacAddress.run_program_with_catching_output("arp -a" + inet.getAddress()) + "\tTotal found =   "+ ++totalFound);
+                  // System.out.println("IP: " + inet + "\tHostName: " + inet.getCanonicalHostName()+ " \tMAC: "+MacAddress.run_program_with_catching_output("arp -a" + inet.getAddress()) + "\tTotal found =   "+ ++totalFound);
                  //MacAddress.run_program_with_catching_output("arp -a " + hostIP);
                    
                    ipArrayList.add(inet);
