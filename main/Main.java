@@ -1,35 +1,35 @@
 package main;
 
 import iPv4.*;
-import macAddress.*;
-import port.*;
-
 import java.net.*;
-import java.sql.Timestamp;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
-import iPv4.GetIpList;
+
 
 import java.io.IOException;
 
 public class Main{
 public static void main(String[] args) throws UnknownHostException, IOException {
 	
-	  Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+	//Date timeNow = new java.util.Date();	
+	//  String timeStamp = new SimpleDateFormat("HH.mm.ss").format(timeNow);
+	
+SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 	  
-	  
-		System.out.println("\n\t --- " + timestamp +" ---" );
-	System.out.println("\n\t\t --- Scann Started ---" );
+System.out.println("\n\t --- " + new java.util.Date() +" ---" );
+System.out.println("\t\t --- Scann Started ---" );
 
     
     
-    IPv4.test();
+     IPv4.getIPs("192.168.0.1", 20, 100).forEach(System.out::println);;
 
 
  
 
 System.out.println("\n\t\t --- The end ---");
-System.out.println( "\n\t --- " + new Timestamp(System.currentTimeMillis()) + " ---");
+System.out.println( "\n\t --- " + formatTime.format(new java.util.Date()) + " ---");
 }
 
 

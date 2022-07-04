@@ -20,7 +20,7 @@ public class IPv4 {
 	
 
 static List<InetAddress> ipRange = new ArrayList<>();
-List<InetAddress> ipReachable = new ArrayList<>();
+static List<InetAddress> ipReachable = new ArrayList<>();
 
 
 
@@ -28,22 +28,19 @@ List<InetAddress> ipReachable = new ArrayList<>();
 
 
 
-public static void test() throws UnknownHostException {
-	
-	System.out.println("Getting IPs\n");
+public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut ) throws UnknownHostException {	
 	
 	
 	
-
+	System.out.println("Getting IPs\n");  
 	  
-	  
-	  InetAddress address = InetAddress.getByName("192.168.0.1");
+	  InetAddress address = InetAddress.getByName(ipAddress);
 	  
 	  long addressLong = ipToLong(address);
 	  
 
 	  
-	for (long i = 0 ; i < 254; i++) {
+	for (long i = 0 ; i < range; i++) {
 	
 		IPv4.ipRange.add(InetAddress.getByName("" + addressLong++ ));	
 		
@@ -53,18 +50,16 @@ public static void test() throws UnknownHostException {
 	
 	
 	
-ipRange.stream()
+	ipReachable = ipRange.stream()
 	.filter(i->{
 		try {
-			return i.isReachable(10);
+			return i.isReachable(timeOut);
 		} catch (IOException e) { e.printStackTrace(); }
 		return true;
 	})
-	.forEach(System.out::println);;
-	
-	
-	
-	
+	.collect(Collectors.toList());
+		
+	return ipReachable;	
 	
 	}
 
@@ -72,7 +67,7 @@ ipRange.stream()
 
 	
 	
-/// for replacament
+
     public static long ipToLong(InetAddress ip) {
         byte[] octets = ip.getAddress();
         long result = 0;
