@@ -17,6 +17,9 @@ public static void main(String[] args) throws UnknownHostException, IOException 
 
     GetIpList getIpList = new GetIpList();
     PortScan portScan = new PortScan();
+    
+    
+    IPv4.test();
 
 
     int timeout = 152; 
@@ -29,7 +32,7 @@ public static void main(String[] args) throws UnknownHostException, IOException 
 
 
     for (InetAddress inetAddress : list) {
-        portScan.portScanner(inetAddress);
+     //   portScan.portScanner(inetAddress);
    }
 
  

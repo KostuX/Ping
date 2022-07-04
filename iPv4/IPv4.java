@@ -2,8 +2,9 @@ package iPv4;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.rmi.server.RemoteStub;
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -25,7 +26,23 @@ List<InetAddress> ipReachable = new ArrayList<>();
 
 
 
-public static void test() {}
+public static void test() throws UnknownHostException {
+	
+	System.out.println("Getting IPs");
+	
+	System.out.println("here");
+	
+	  long ipLo = ipToLong(InetAddress.getByName("192.200.0.0"));
+	  
+	
+	  
+	for (long i = ipLo ; i < 300; i++) {
+		System.out.println( "dfdfdf"+ InetAddress.getByName("" + ipLo));
+		
+	}
+		
+	}
+
 
 
 	
