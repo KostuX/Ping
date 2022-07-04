@@ -12,6 +12,7 @@ scan();
         int totalFound= 0;
 
         try {
+        System.out.println();
 
             while (ip[2] <= endIp[2])
             {
