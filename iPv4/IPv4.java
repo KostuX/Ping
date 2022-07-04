@@ -2,11 +2,35 @@ package iPv4;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.rmi.server.RemoteStub;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
-public class IPv4 {
+
+
+
+
+
+public class IPv4 {	
 	
+
+List<InetAddress> ipRange = new ArrayList<>();
+List<InetAddress> ipReachable = new ArrayList<>();
+
+
+
+
+
+
+
+public static void test() {}
+
+
+	
+	
+/// for replacament
     public static long ipToLong(InetAddress ip) {
         byte[] octets = ip.getAddress();
         long result = 0;
