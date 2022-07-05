@@ -34,8 +34,10 @@ public class LocalNetwork_TEMP {
             InetAddress localHost = Inet4Address.getLocalHost();
             NetworkInterface networkInterface = NetworkInterface.getByInetAddress(localHost);
             
+            System.out.println(localHost.toString() + "  --  " +networkInterface.toString());
+            
             for (InterfaceAddress address : networkInterface.getInterfaceAddresses()) {
-               // System.out.println(address.getNetworkPrefixLength());
+               System.out.println(address.getNetworkPrefixLength());
             }
 
 

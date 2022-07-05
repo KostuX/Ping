@@ -21,11 +21,11 @@ SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 System.out.println("\n\t --- " + new java.util.Date() +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
+InetAddress.getLocalHost();//////////??///////////////////////////"192.168.0.1"
     
-    
-     IPv4.getIPs("192.168.0.1", 20, 100).forEach(System.out::println);;
+  //   IPv4.getIPs("192.168.0.1", 254, 100).forEach(System.out::println);;
 
-
+IPv4.test();
  
 
 System.out.println("\n\t\t --- The end ---");
