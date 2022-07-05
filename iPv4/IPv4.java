@@ -1,15 +1,9 @@
 package iPv4;
 
 import java.io.IOException;
-import java.net.Inet4Address;
 import java.net.InetAddress;
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
 import java.net.UnknownHostException;
-
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
