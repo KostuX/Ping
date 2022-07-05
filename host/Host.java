@@ -1,17 +1,18 @@
 package host;
 
 import java.net.InetAddress;
+import java.util.List;
 
 public class Host {
 	
 	private InetAddress address;
-	private int ports[];
+	private List<Integer> ports ;
 	private String macAddress;
 	private boolean local;
 	public static int totalHosts;
 	
 	
-	public Host(InetAddress address, int[] ports, String macAddress, boolean local) {
+	public Host(InetAddress address, List<Integer> ports, String macAddress, boolean local) {
 		super();
 		this.address = address;
 		this.ports = ports;
@@ -38,12 +39,12 @@ public class Host {
 	}
 
 
-	public int[] getPorts() {
+	public List<Integer> getPorts() {
 		return ports;
 	}
 
 
-	public void setPorts(int[] ports) {
+	public void setPorts(List<Integer> ports) {
 		this.ports = ports;
 	}
 
