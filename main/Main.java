@@ -35,12 +35,22 @@ System.out.println("Hosts found:" + Host.totalHosts);
 onlineHosts.forEach(t->System.out.println(t.getAddress()));
 
 
-if(true)
-onlineHosts.forEach(t->t.setPorts(portScan.portScanner(t.getAddress()))); 
+if(true) {
+//onlineHosts.forEach(t->t.setPorts(portScan.portScanner(t.getAddress()))); 
+for (Host host : onlineHosts) {
+	
+	portScan.portScanner(host.getAddress());
+
+	
+}
+
+
+
+
 System.err.println("Port scann set to null");
 
 
-  
+}
  
 
 System.out.println("\n\t\t --- The end ---");

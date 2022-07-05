@@ -1,19 +1,14 @@
 package port;
 
 import java.net.*;
-import java.util.ArrayList;
-import java.util.List;
 
 //import java.io.IOException;
 
 public class PortScan {
 
-  public  List<Integer>  portScanner(InetAddress inAddress){
+  public  void  portScanner(InetAddress inAddress){
 
-	  List<Integer> openPorts = new ArrayList<>();
-
-System.out.println(" \n\t-- \tStarting Port Scan \t--\t\n ");
-
+    
 
     int portNr[] ={
    
@@ -21,34 +16,44 @@ System.out.println(" \n\t-- \tStarting Port Scan \t--\t\n ");
     };
 
 
+System.out.println(" \n\t-- \tStarting Port Scan \t--\t\n ");
 
-    int counter = portNr.length;
+
+    int counter =portNr.length;
 
 while(counter > 0)
 {
-  System.out.println("\n\n\t Testing -> "+inAddress);
+
+        
+
+
+ 
+  
+  
+  System.out.println("\n\n\t"+inAddress);
   
 
       for (int i = 0; i < portNr.length; i++) {
       
+      
+    //System.out.println("Testing port: "+ portNr[counter]);
     try
     {
     
         Socket scannerSocket = new Socket();
         scannerSocket.connect(new InetSocketAddress(inAddress, portNr[i]),50);
         System.out.println("Open port: "+ portNr[i]+ "\t\t"+ portName(portNr[i]));
-        openPorts.add(portNr[i]);
         scannerSocket.close();
       }catch(Exception e)
       {
-     e.printStackTrace();
+     //e.printStackTrace();
       
       }
    finally{counter--;}
     }
      
     }
-return openPorts;
+    
 
   };
 
