@@ -8,6 +8,7 @@ public class Host {
 	private int ports[];
 	private String macAddress;
 	private boolean local;
+	public static int totalHosts;
 	
 	
 	public Host(InetAddress address, int[] ports, String macAddress, boolean local) {
@@ -20,7 +21,10 @@ public class Host {
 
 
 	public Host(InetAddress address) {
+		
 		this.address = address;
+	
+		totalHosts++;
 	}
 
 
