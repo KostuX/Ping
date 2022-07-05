@@ -8,16 +8,23 @@ public class Host {
 	private InetAddress address;
 	private List<Integer> ports ;
 	private String macAddress;
-	private boolean local;
+
 	public static int totalHosts;
 	
 	
-	public Host(InetAddress address, List<Integer> ports, String macAddress, boolean local) {
+	
+	@Override
+	public String toString() {
+	    return "Host " + address + ", \nports= " + ports + ", \nmacAddress= " + macAddress ;
+	}
+
+
+	public Host(InetAddress address, List<Integer> ports, String macAddress) {
 		super();
 		this.address = address;
 		this.ports = ports;
 		this.macAddress = macAddress;
-		this.local = local;
+	
 	}
 
 
@@ -58,15 +65,6 @@ public class Host {
 		this.macAddress = macAddress;
 	}
 
-
-	public boolean isLocal() {
-		return local;
-	}
-
-
-	public void setLocal(boolean local) {
-		this.local = local;
-	}	
 
 	
 	

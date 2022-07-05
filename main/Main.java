@@ -26,31 +26,21 @@ System.out.println("\n\t --- " + new java.util.Date() +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
 
-    
+// get hosts   
 List<Host> onlineHosts = new ArrayList<>();
 IPv4.getIPs(ipString, scanHosts, timeout).forEach(address->onlineHosts.add(new Host(address)));
 
 System.out.println("Hosts found:" + Host.totalHosts);
 
+// print all hosts
 onlineHosts.forEach(t->System.out.println(t.getAddress()));
 
 
-if(true) {
-//onlineHosts.forEach(t->t.setPorts(portScan.portScanner(t.getAddress()))); 
-for (Host host : onlineHosts) {
-	
-	portScan.portScanner(host.getAddress());
-
-	
-}
+// add ports
+onlineHosts.forEach(host->portScan.portScanner(host)); 
 
 
-
-
-System.err.println("Port scann set to null");
-
-
-}
+//onlineHosts.get(0).getPorts().forEach(System.out::println);
  
 
 System.out.println("\n\t\t --- The end ---");
