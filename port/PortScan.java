@@ -2,7 +2,7 @@ package port;
 
 import java.net.*;
 
-//mport java.io.IOException;
+//import java.io.IOException;
 
 public class PortScan {
 
