@@ -1,46 +1,68 @@
 package macAddress;
 import java.io.*;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 public class MacAddress {
     
 
 
-public static String run_program_with_catching_output(String param) throws IOException {
+    public static String getMacAddrHost(String host) throws IOException, InterruptedException {
+        //
+        boolean ok = ping3(host);
+        System.out.println(ok);
+   
+        if (ok) {
+            InetAddress address = InetAddress.getByName(host);
+            String ip = address.getHostAddress();
+            return run_program_with_catching_output("arp -a " + ip);
+        }
+        //
+        return null;
+        //
+    }
 
-    Process p = Runtime.getRuntime().exec(param);
 
-    BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+ public static boolean ping3(String host) throws IOException, InterruptedException {
+        boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
 
-    String line;
+        ProcessBuilder processBuilder = new ProcessBuilder("ping", isWindows ? "-n" : "-c", "1", host);
+        Process proc = processBuilder.start();
 
-    while ((line = input.readLine()) != null) {
-        if (!line.trim().equals("")) {
-           
-            line = line.substring(1);
+       // int returnVal = proc.waitFor();
+        return true;
+    }
 
-            System.out.println(line);
+    public static String run_program_with_catching_output(String param) throws IOException {
+        Process p = Runtime.getRuntime().exec(param);
+        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        while ((line = input.readLine()) != null) {
+            if (!line.trim().equals("")) {
+                // keep only the process name
+                line = line.substring(1);
+                System.out.println(line);
+                String mac = extractMacAddr(line);
+                if (mac.isEmpty() == false) {
+                    return mac;
+                }
+            }
 
-            String mac = extractMacAddr(line);
-            if (mac.isEmpty() == false) {
-                return mac;
+        }
+        return null;
+    }
+
+    public static String extractMacAddr(String str) {
+        String arr[] = str.split("   ");
+        for (String string : arr) {
+            if (string.trim().length() == 17) {
+                return string.trim().toUpperCase();
             }
         }
-
+        return "";
     }
-    return null;
-}
-
-
-public static String extractMacAddr(String str) {
-    String arr[] = str.split("   ");
-    for (String string : arr) {
-        if (string.trim().length() == 17) {
-            return string.trim().toUpperCase();
-        }
-    }
-    return "";
-}
-
 
 
 }

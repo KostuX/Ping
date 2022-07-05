@@ -42,7 +42,7 @@ public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut 
 	.collect(Collectors.toList());
 		
 	return ipReachable;
-	}
+	} // end of getIP method
 
     public static long ipToLong(InetAddress ip) {
         byte[] octets = ip.getAddress();
@@ -54,16 +54,6 @@ public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut 
         return result;
     }
     
-public static void test() throws UnknownHostException, SocketException {
-    // Get subnet
-    InetAddress localHost = Inet4Address.getLocalHost();
-    NetworkInterface networkInterface = NetworkInterface.getByInetAddress(localHost);
-    
-    System.out.println(localHost);
-    
-    
-    for (InterfaceAddress address : networkInterface.getInterfaceAddresses()) {
-       System.out.println(address.getNetworkPrefixLength());
-    }
-}
-}
+
+
+}// end of class
