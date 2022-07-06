@@ -18,23 +18,20 @@ public static void main(String[] args) throws UnknownHostException, IOException,
 PortScan portScan = new PortScan();
 	
 String ipString = "192.168.0.1";
-int scanHosts = 10;
-int timeout =1000;
+int scanHosts = 100;
+int timeout =5000;
 	
 SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 	  
 System.out.println("\n\t --- " + new java.util.Date() +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
+//C:\Users\HP>ping -a 192.168.0.8
 
 
 // get hosts   
 List<Host> onlineHosts = new ArrayList<>();
 IPv4.getIPs(ipString, scanHosts, timeout).forEach(address->onlineHosts.add(new Host(address)));
-
-String s =onlineHosts.get(0).getAddress().toString().substring(1);
-String cmd = "arp -a " + s;
-System.out.println(os.Windows_CMD.run_CMD(cmd));
 
 
 System.out.println("Hosts found: " + Host.totalHosts);
