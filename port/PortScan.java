@@ -55,7 +55,7 @@ while(counter > 0)
 host.setPorts(openPorts);
   };
 
-  public  static String portName(int scannedPort){
+  public static String portName(int scannedPort){
 
 String description="";
 

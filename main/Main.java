@@ -1,6 +1,7 @@
 package main;
 
 import iPv4.*;
+import os.Windows_CMD;
 import port.PortScan;
 
 import java.net.*;
@@ -26,14 +27,33 @@ System.out.println("\n\t --- " + new java.util.Date() +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
 
+
 // get hosts   
 List<Host> onlineHosts = new ArrayList<>();
 IPv4.getIPs(ipString, scanHosts, timeout).forEach(address->onlineHosts.add(new Host(address)));
 
-System.out.println("Hosts found:" + Host.totalHosts);
+String s =onlineHosts.get(0).getAddress().toString().substring(1);
+String cmd = "arp -a " + s;
+System.out.println(os.Windows_CMD.run_CMD(cmd));
+
+
+System.out.println("Hosts found: " + Host.totalHosts);
 
 // print all hosts
-onlineHosts.forEach(t->System.out.println(t.getAddress()));
+onlineHosts.forEach(t->
+			{
+			    System.out.print(t.getAddress() + "\t");
+			    try {
+				System.out.println(
+                				os.Windows_CMD.run_CMD(
+                					"arp -a " + t.getAddress().toString().substring(1)
+                					)
+					);
+			    } catch (IOException e) {
+				
+				e.printStackTrace();
+			    }
+			});
 
 
 // add ports

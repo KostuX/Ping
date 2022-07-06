@@ -18,10 +18,11 @@ public class Windows_CMD {
                
                 line = line.substring(0);           
                 
-    return line;
+
     
-            //    String mac = extractMacAddr(line);    
-             //   if (mac.isEmpty() == false) { return mac;}
+               String mac = extractMacAddr(line);    
+              // System.out.println(mac);
+                if (mac.isEmpty() == false) { return mac;}
             }
     
         }
