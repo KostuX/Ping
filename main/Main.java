@@ -18,8 +18,8 @@ public static void main(String[] args) throws UnknownHostException, IOException,
 PortScan portScan = new PortScan();
 	
 String ipString = "192.168.0.1";
-int scanHosts = 100;
-int timeout =5000;
+int scanHosts = 254;
+int timeout =50000;
 	
 SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 	  
@@ -27,6 +27,7 @@ System.out.println("\n\t --- " + new java.util.Date() +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
 //C:\Users\HP>ping -a 192.168.0.8
+//https://www.printsupportcenter.com/hc/en-us/articles/115003386949-Determine-which-program-uses-or-blocks-a-port
 
 
 // get hosts   
