@@ -15,7 +15,9 @@ public class Host {
 	
 	@Override
 	public String toString() {
-	    return "Host " + address + ", \nports= " + ports + ", \nmacAddress= " + macAddress ;
+	    return "Host: " + address.toString().substring(1) 
+		    + "\nmacAddress: " + macAddress 
+		    + "\nports= " + ports + "\n";
 	}
 
 

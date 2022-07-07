@@ -1,8 +1,8 @@
 package main;
 
 import iPv4.*;
-import os.Windows_CMD;
 import port.PortScan;
+import os.*;
 
 import java.net.*;
 import java.text.SimpleDateFormat;
@@ -18,8 +18,8 @@ public static void main(String[] args) throws UnknownHostException, IOException,
 PortScan portScan = new PortScan();
 	
 String ipString = "192.168.0.1";
-int scanHosts = 254;
-int timeout =50000;
+int scanHosts = 10;
+int timeout =500;
 	
 SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
 	  
@@ -37,26 +37,33 @@ IPv4.getIPs(ipString, scanHosts, timeout).forEach(address->onlineHosts.add(new H
 
 System.out.println("Hosts found: " + Host.totalHosts);
 
+onlineHosts.forEach(t->{
+    try {
+	Windows_CMD.getMacByIp(t);
+    } catch (IOException e) {
+	
+	e.printStackTrace();
+    }
+});
+//onlineHosts.forEach(System.out::println);
+
 // print all hosts
-onlineHosts.forEach(t->
-			{
-			    System.out.print(t.getAddress() + "\t");
-			    try {
-				System.out.println(
-                				os.Windows_CMD.run_CMD(
-                					"arp -a " + t.getAddress().toString().substring(1)
-                					)
-					);
-			    } catch (IOException e) {
-				
-				e.printStackTrace();
-			    }
-			});
+
+/*
+ * onlineHosts.forEach(t-> { System.out.print(t.getAddress() + "\t"); try {
+ * System.out.println( os.Windows_CMD.run_CMD( "arp -a " +
+ * t.getAddress().toString().substring(1) ) ); } catch (IOException e) {
+ * 
+ * e.printStackTrace(); } });
+ */
+
 
 
 // add ports
 onlineHosts.forEach(host->portScan.portScanner(host)); 
 
+
+onlineHosts.forEach(System.out::println);
 
 //onlineHosts.get(0).getPorts().forEach(System.out::println);
  
