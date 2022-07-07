@@ -21,7 +21,7 @@ public class PortScan {
 
       InetAddress inAddress = host.getAddress();
 
-System.out.println("\n\t "+inAddress+"  -->  \tStarting Port Scan \t ");
+System.out.println("\n\t\t Starting Port Scan  \n\t" + inAddress.toString().substring(1) + "  ||  " + host.getMacAddress() +"\n" );
 
 
     int counter = portNr.length;

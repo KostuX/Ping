@@ -5,9 +5,11 @@ import port.PortScan;
 import os.*;
 
 import java.net.*;
+import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 
 import host.Host;
 import java.io.IOException;
@@ -18,13 +20,16 @@ public static void main(String[] args) throws UnknownHostException, IOException,
 PortScan portScan = new PortScan();
 	
 String ipString = "192.168.0.1";
-int scanHosts = 10;
-int timeout =500;
+int scanHosts = 2;
+int timeout =3000;
 	
-SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss");
+SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss:SSS");
+Date startTime = new java.util.Date();
 	  
-System.out.println("\n\t --- " + new java.util.Date() +" ---" );
+System.out.println("\n\t --- " + startTime +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
+
+
 
 //C:\Users\HP>ping -a 192.168.0.8
 //https://www.printsupportcenter.com/hc/en-us/articles/115003386949-Determine-which-program-uses-or-blocks-a-port
@@ -36,6 +41,8 @@ IPv4.getIPs(ipString, scanHosts, timeout).forEach(address->onlineHosts.add(new H
 
 
 System.out.println("Hosts found: " + Host.totalHosts);
+
+
 
 onlineHosts.forEach(t->{
     try {
@@ -71,13 +78,19 @@ onlineHosts.forEach(t->{
 onlineHosts.forEach(host->portScan.portScanner(host)); 
 
 
-onlineHosts.forEach(System.out::println);
+//onlineHosts.forEach(System.out::println);
 
 //onlineHosts.get(0).getPorts().forEach(System.out::println);
  
+	
 
-System.out.println("\n\t\t --- The end ---");
-System.out.println( "\n\t --- " + formatTime.format(new java.util.Date()) + " ---");
+
+
+
+
+System.out.println("\n\t\t --- The end ---\n");
+time.TimeHelper.printTimeLapsed(startTime);
+//System.out.println( "\n\t --- " + formatTime.format(new java.util.Date() - startTime)  + " ---");
 }
 
 
