@@ -57,6 +57,14 @@ onlineHosts.forEach(t->{
  * e.printStackTrace(); } });
  */
 
+//@todo;
+//get own ip;
+//get own network range;
+//get mac address vendor
+//get process for which have open specific port
+//get hostname by ip
+//threads
+
 
 
 // add ports
