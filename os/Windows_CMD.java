@@ -14,6 +14,7 @@ public class Windows_CMD {
         BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));  
     
         while ( input.readLine() != null) { line += input.readLine(); }       
+        input.close();
         return line;
     }
     
@@ -33,13 +34,25 @@ public class Windows_CMD {
         	   // System.out.println(s);
                 host.setMacAddress(s); 
                 break;
+            }            
+            else {host.setMacAddress("Not:this:time"); }
             }
-            
-            else {
-        	 host.setMacAddress("Not:this:time");
-	    }
-            
         }
+    
+    
+    //ping -a -n 1  192.168.0.8
+    public static void getHostName(Host host) throws IOException
+    {
+	String hostname = "ping -a -n 1 " + host.getAddress().toString().substring(1);
+	
+        String arr[] = run_CMD(hostname).split(" ");
+        
+        host.setHostName(arr[1]);
        
+        
+   // System.err.println(arr[1]);
+	
     }
+    
+    
     }

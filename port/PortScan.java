@@ -21,7 +21,7 @@ public class PortScan {
 
       InetAddress inAddress = host.getAddress();
 
-System.out.println("\n\t\t Starting Port Scan  \n\t" + inAddress.toString().substring(1) + "  ||  " + host.getMacAddress() +"\n" );
+System.out.println("\n\t\t Starting Port Scan  \n\t" + inAddress.toString().substring(1) + "  ||  " + host.getHostName() + "  ||  "+ host.getMacAddress() +"\n" );
 
 
     int counter = portNr.length;
@@ -191,7 +191,7 @@ String description="";
             break;
         case 126: description = "Formerly Unisys Unitary Login, renamed by Unisys to NXEdit";
             break;
-        case 135: description = "DCE endpoint resolution";
+        case 135: description = "DCE endpoint resolution || Microsoft Remote Procedure Call";
             break;
         case 137: description = "NetBIOS Name Service";
             break;

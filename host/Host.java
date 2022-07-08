@@ -7,7 +7,17 @@ public class Host {
 	
 	private InetAddress address;
 	private List<Integer> ports ;
-	private String macAddress;
+	public String getHostName() {
+	    return hostName;
+	}
+
+
+	public void setHostName(String hostName) {
+	    this.hostName = hostName;
+	}
+
+
+	private String macAddress, hostName;
 
 	public static int totalHosts;
 	
@@ -16,6 +26,7 @@ public class Host {
 	@Override
 	public String toString() {
 	    return "Host: " + address.toString().substring(1) 
+		    + "\nHostname: " + hostName
 		    + "\nmacAddress: " + macAddress 
 		    + "\nports= " + ports + "\n";
 	}
