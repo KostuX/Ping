@@ -38,7 +38,7 @@ PortScan portScan = new PortScan();
 
 List<Host> onlineHosts = new ArrayList<>();	
 String ipString = "192.168.0.1";
-int scanHosts = 1;
+int scanHosts = 20;
 int timeout =500;
 
 	
@@ -49,20 +49,11 @@ System.out.println("\n\t --- " + startTime +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
 
-//macAddress.MacAddress.readFile();
-System.out.println(0x00001E);
 
-int nr = 0x00001E;
 
-switch (nr) {
-case 0x00001E: {
-    
-    System.out.println("this"+ 0x00001E);
-    break;
-}
-default:
-   System.out.println("n");
-}
+
+
+
 
 
 // get hosts   
@@ -78,6 +69,8 @@ onlineHosts.forEach(t->{ Windows_CMD.getHostName(t); });
 // add MAC address
 onlineHosts.forEach(t->{Windows_CMD.getMacByIp(t);});
 
+onlineHosts.forEach(t->macAddress.MacAddress.readFile(t));
+//macAddress.MacAddress.readFile(onlineHosts.get(0));
 //add ports
 onlineHosts.forEach(host->portScan.portScanner(host)); 
 
@@ -85,7 +78,7 @@ onlineHosts.forEach(host->portScan.portScanner(host));
 
 
 
-
+System.out.println("Summary\n");
 onlineHosts.forEach(System.out::println);
 
 System.out.println("\n\t\t --- The end ---\n");

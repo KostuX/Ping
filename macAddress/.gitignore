@@ -1,3 +1,6 @@
 /GetMacAddress.class
 /MacAddress.class
 /MacAddress$WriteToFile.class
+/MACvendor.class
+/MacVendorHelper.class
+/MACvendorHelper.class

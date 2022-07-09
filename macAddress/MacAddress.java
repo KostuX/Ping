@@ -5,6 +5,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
+import host.Host;
 public class MacAddress {
     
 
@@ -64,8 +66,16 @@ public class MacAddress {
         return "";
     }
 
-  public static  void readFile()
+  public static  void readFile(Host host)
     {
+	  if(host.getMacAddress()!= null) {
+		  
+		  String str = host.getMacAddress();
+		  str = str.substring(0, 8).replace("-", "") ; 
+		 
+		 
+		 
+		 // System.exit(0);
 	   
         File file = new File("mac-vendor.txt");
  
@@ -78,28 +88,46 @@ public class MacAddress {
         String st;
 
         try {
-	    while ((st = br.readLine()) != null) 
-		writeFile(st.split("\t"));
+       
+	    while ((st = br.readLine()) != null) {
+	    	
+		String s[] = st.split("\t");
+		
+		
+	    if(s[0].equals(str)){host.setMacVendor(s[1]);;}
+	    }
+	    
 	} catch (IOException e) {e.printStackTrace();
 	}
-    }
+    }}
   
-      public static void writeFile(String[] s) {
-        try {
-          FileWriter myWriter = new FileWriter("filename.txt", true);
-          BufferedWriter bw = new BufferedWriter(myWriter);
-          bw.newLine();
-          myWriter.write("case\t" + s[0] +":  macVendor = \""+ s[1] +"\"; break;\n");
-          bw.newLine();
-         
-          myWriter.close();
-          
-        } catch (IOException e) {e.printStackTrace();}
-      }
+  
+  
+  
+  
+  
+  
+  
+  
+	/*
+	 * 
+	 * public static void writeFile(String[] s) { try { FileWriter myWriter = new
+	 * FileWriter("filename.txt", true); BufferedWriter bw = new
+	 * BufferedWriter(myWriter); bw.newLine();
+	 * 
+	 * String str = s[0]; str = str.substring(0, 2) + "-" + str.substring(2,
+	 * str.length()); str = str.substring(0, 5) + "-" + str.substring(5,
+	 * str.length());
+	 * 
+	 * myWriter.write("case\t\"" + str +"\" :  return \""+ s[1] +"\";\n");
+	 * bw.newLine();
+	 * 
+	 * myWriter.close();
+	 * 
+	 * } catch (IOException e) {e.printStackTrace();} }
+	 */
       
       
-      
-      
-      
+ 
    
 }

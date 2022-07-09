@@ -6,7 +6,41 @@ import java.util.List;
 public class Host {
 	
 	private InetAddress address;
+	public String getMacVendor() {
+		return macVendor;
+	}
+
+
+
+	public void setMacVendor(String macVendor) {
+		this.macVendor = macVendor;
+	}
+
+
 	private List<Integer> ports ;
+	private String macAddress,macVendor, hostName;
+
+	public static int totalHosts;
+	
+	@Override
+	public String toString() {
+	    return "Host: " + address.toString().substring(1) 
+		    + "\nHostname: " + hostName
+		    + "\nmacAddress: " + macAddress  
+		    + "\nmacVendor: " + macVendor 
+		    + "\nports= " + ports + "\n";
+	}
+
+
+
+	public Host(InetAddress address) {
+		
+		this.address = address;
+	
+		totalHosts++;
+	}
+	
+	
 	public String getHostName() {
 	    return hostName;
 	}
@@ -18,38 +52,13 @@ public class Host {
 	}
 
 
-	private String macAddress, hostName;
 
-	public static int totalHosts;
 	
 	
 	
 	
 	
-	@Override
-	public String toString() {
-	    return "Host: " + address.toString().substring(1) 
-		    + "\nHostname: " + hostName
-		    + "\nmacAddress: " + macAddress 
-		    + "\nports= " + ports + "\n";
-	}
 
-
-	public Host(InetAddress address, List<Integer> ports, String macAddress) {
-		super();
-		this.address = address;
-		this.ports = ports;
-		this.macAddress = macAddress;
-	
-	}
-
-
-	public Host(InetAddress address) {
-		
-		this.address = address;
-	
-		totalHosts++;
-	}
 
 
 	public InetAddress getAddress() {
