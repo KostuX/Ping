@@ -21,11 +21,17 @@ public class Windows_CMD {
     
     
     // extract mac from "arp -a ip"
-    public static void getMacByIp(Host host) throws IOException {
+    public static void getMacByIp(Host host)  {
 
 	String arp_A = "arp -a " + host.getAddress().toString().substring(1);
 	
-        String arr[] = run_CMD(arp_A).split("   ");
+        String arr[] = null;
+	try {
+	    arr = run_CMD(arp_A).split("   ");
+	} catch (IOException e) {
+	    
+	    e.printStackTrace();
+	}
         for (String string : arr) {
         
    
@@ -41,17 +47,19 @@ public class Windows_CMD {
     
     
     //ping -a -n 1  192.168.0.8
-    public static void getHostName(Host host) throws IOException
+    public static void getHostName(Host host) 
     {
 	String hostname = "ping -a -n 1 " + host.getAddress().toString().substring(1);
 	
-        String arr[] = run_CMD(hostname).split(" ");
+        String arr[] = null;
+	try {
+	    arr = run_CMD(hostname).split(" ");
+	} catch (IOException e) {
+	    
+	    e.printStackTrace();
+	}
         
         host.setHostName(arr[1]);
-       
-        
-   // System.err.println(arr[1]);
-	
     }
     
     

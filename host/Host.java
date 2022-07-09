@@ -13,13 +13,16 @@ public class Host {
 
 
 	public void setHostName(String hostName) {
-	    this.hostName = hostName;
+	    String hostnm = hostName.equals(address.toString().substring(1))? "":hostName;
+	    this.hostName = hostnm;
 	}
 
 
 	private String macAddress, hostName;
 
 	public static int totalHosts;
+	
+	
 	
 	
 	

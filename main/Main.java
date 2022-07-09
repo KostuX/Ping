@@ -1,5 +1,22 @@
 package main;
 
+
+
+//@todo;
+//get own ip;
+//get own network range;
+//get mac address vendor
+//get process for which have open specific port
+
+//threads
+
+
+//https://www.printsupportcenter.com/hc/en-us/articles/115003386949-Determine-which-program-uses-or-blocks-a-port
+//C:\Users\My>netstat -ano -p tcp |find "192.168.0.8:139" 
+//tasklist /svc /FI "PID eq 488"
+
+
+
 import iPv4.*;
 import port.PortScan;
 import os.*;
@@ -18,10 +35,12 @@ public class Main{
 public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
 	
 PortScan portScan = new PortScan();
-	
-String ipString = "192.168.0.8";
+
+List<Host> onlineHosts = new ArrayList<>();	
+String ipString = "192.168.0.1";
 int scanHosts = 1;
 int timeout =500;
+
 	
 SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss:SSS");
 Date startTime = new java.util.Date();
@@ -30,76 +49,48 @@ System.out.println("\n\t --- " + startTime +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
 
+//macAddress.MacAddress.readFile();
+System.out.println(0x00001E);
 
-//C:\Users\My>ping -a -n 1  192.168.0.8
-//https://www.printsupportcenter.com/hc/en-us/articles/115003386949-Determine-which-program-uses-or-blocks-a-port
-//C:\Users\My>netstat -ano -p tcp |find "192.168.0.8:139" 
-//tasklist /svc /FI "PID eq 488"
+int nr = 0x00001E;
+
+switch (nr) {
+case 0x00001E: {
+    
+    System.out.println("this"+ 0x00001E);
+    break;
+}
+default:
+   System.out.println("n");
+}
+
 
 // get hosts   
-List<Host> onlineHosts = new ArrayList<>();
-IPv4.getIPs(ipString, scanHosts, timeout).forEach(address-> {onlineHosts.add(new Host(address)); System.out.println();});
 
-onlineHosts.forEach(t->{
-    try {
-	Windows_CMD.getHostName(t);
-    } catch (IOException e1) {
-	
-	e1.printStackTrace();
-    }
-});
+IPv4.getIPs(ipString, scanHosts, timeout).forEach(address-> {onlineHosts.add(new Host(address));});
 
 System.out.println("Hosts found: " + Host.totalHosts);
 
 
+// add Hostname
+onlineHosts.forEach(t->{ Windows_CMD.getHostName(t); });
 
-onlineHosts.forEach(t->{
-    try {
-	Windows_CMD.getMacByIp(t);
-    } catch (IOException e) {
-	
-	e.printStackTrace();
-    }
-});
-//onlineHosts.forEach(System.out::println);
+// add MAC address
+onlineHosts.forEach(t->{Windows_CMD.getMacByIp(t);});
 
-// print all hosts
-
-/*
- * onlineHosts.forEach(t-> { System.out.print(t.getAddress() + "\t"); try {
- * System.out.println( os.Windows_CMD.run_CMD( "arp -a " +
- * t.getAddress().toString().substring(1) ) ); } catch (IOException e) {
- * 
- * e.printStackTrace(); } });
- */
-
-//@todo;
-//get own ip;
-//get own network range;
-//get mac address vendor
-//get process for which have open specific port
-//get hostname by ip
-//threads
-
-
-
-// add ports
+//add ports
 onlineHosts.forEach(host->portScan.portScanner(host)); 
+
+
+
+
+
+
 onlineHosts.forEach(System.out::println);
-
-//onlineHosts.forEach(System.out::println);
-
-//onlineHosts.get(0).getPorts().forEach(System.out::println);
- 
-	
-
-
-
-
 
 System.out.println("\n\t\t --- The end ---\n");
 time.TimeHelper.printTimeLapsed(startTime);
-//System.out.println( "\n\t --- " + formatTime.format(new java.util.Date() - startTime)  + " ---");
+
 }
 
 

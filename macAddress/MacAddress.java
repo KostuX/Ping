@@ -1,6 +1,6 @@
 package macAddress;
+
 import java.io.*;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -64,5 +64,42 @@ public class MacAddress {
         return "";
     }
 
+  public static  void readFile()
+    {
+	   
+        File file = new File("mac-vendor.txt");
+ 
+        BufferedReader br = null;
+	try {
+	    br = new BufferedReader(new FileReader(file));
+	} catch (FileNotFoundException e) { e.printStackTrace();}
+ 
+     
+        String st;
 
+        try {
+	    while ((st = br.readLine()) != null) 
+		writeFile(st.split("\t"));
+	} catch (IOException e) {e.printStackTrace();
+	}
+    }
+  
+      public static void writeFile(String[] s) {
+        try {
+          FileWriter myWriter = new FileWriter("filename.txt", true);
+          BufferedWriter bw = new BufferedWriter(myWriter);
+          bw.newLine();
+          myWriter.write("case\t" + s[0] +":  macVendor = \""+ s[1] +"\"; break;\n");
+          bw.newLine();
+         
+          myWriter.close();
+          
+        } catch (IOException e) {e.printStackTrace();}
+      }
+      
+      
+      
+      
+      
+   
 }

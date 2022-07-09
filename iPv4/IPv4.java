@@ -30,11 +30,14 @@ public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut 
 	.filter(i->{
 		try {
 			return i.isReachable(timeOut);
+			
 		} catch (IOException e) { e.printStackTrace(); }
 		return true;
 	})
 	.collect(Collectors.toList());
 		
+	
+	
 	return ipReachable;
 	} // end of getIP method
 
