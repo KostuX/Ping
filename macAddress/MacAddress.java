@@ -71,13 +71,13 @@ public class MacAddress {
 	  if(host.getMacAddress()!= null) {
 		  
 		  String str = host.getMacAddress();
-		  str = str.substring(0, 8).replace("-", "") ; 
+		  str = str.substring(0, 8).replace("-", ":") ; 
 		 
 		 
 		 
 		 // System.exit(0);
 	   
-        File file = new File("mac-vendor.txt");
+        File file = new File("filename.txt");
  
         BufferedReader br = null;
 	try {
@@ -94,7 +94,7 @@ public class MacAddress {
 		String s[] = st.split("\t");
 		
 		
-	    if(s[0].equals(str)){host.setMacVendor(s[1]);;}
+	    if(s[0].equals(str)){host.setMacVendor(s[1]);}
 	    }
 	    
 	} catch (IOException e) {e.printStackTrace();
