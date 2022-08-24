@@ -21,7 +21,7 @@ public class PortScan {
 
       InetAddress inAddress = host.getAddress();
 
-System.out.println("\n\t\t Starting Port Scan  \n\t" + inAddress.toString().substring(1) + "  ||  " + host.getHostName() + "  ||  "+ host.getMacAddress() +"\n" );
+//System.out.println("\n\t\t Starting Port Scan  \n\t" + inAddress.toString().substring(1) + "  ||  " + host.getHostName() + "  ||  "+ host.getMacAddress() +"\n" );
 
 
     int counter = portNr.length;
@@ -40,7 +40,7 @@ while(counter > 0)
         Socket scannerSocket = new Socket();
         scannerSocket.connect(new InetSocketAddress(inAddress, portNr[i]),50);
         scannerSocket.close();
-        System.out.println("Open port: "+ portNr[i]+ "\t\t"+ portName(portNr[i]));
+        System.out.println(inAddress.toString().substring(1) + ": "+ portNr[i]+ "\t\t"+ portName(portNr[i]));
         openPorts.add(portNr[i]);
       }catch(Exception e)
       {

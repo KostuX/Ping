@@ -41,7 +41,7 @@ public class Windows_CMD {
                 host.setMacAddress(s); 
                 break;
             }            
-            else {host.setMacAddress("Not:this:time"); }
+            
             }
         }
     
@@ -49,7 +49,8 @@ public class Windows_CMD {
     //ping -a -n 1  192.168.0.8
     public static void getHostName(Host host) 
     {
-	String hostname = "ping -a -n 1 " + host.getAddress().toString().substring(1);
+	String hostAddress = host.getAddress().toString().substring(1);
+	String hostname = "ping -a -n 1 " + hostAddress;
 	
         String arr[] = null;
 	try {
@@ -58,8 +59,8 @@ public class Windows_CMD {
 	    
 	    e.printStackTrace();
 	}
-        
-        host.setHostName(arr[1]);
+        if(arr[1].equals(hostAddress)) {host.setHostName("Not Found"); }
+        else  {host.setHostName(arr[1].toString());}
     }
     
     

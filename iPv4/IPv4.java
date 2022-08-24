@@ -15,7 +15,7 @@ static List<InetAddress> ipReachable = new ArrayList<>();
 
 public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut ) throws UnknownHostException {	
     
-	System.out.println("Getting IPs...\n");  
+	 
 	  
 	  InetAddress address = InetAddress.getByName(ipAddress);
 	  

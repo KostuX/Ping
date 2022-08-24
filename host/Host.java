@@ -6,16 +6,7 @@ import java.util.List;
 public class Host {
 	
 	private InetAddress address;
-	public String getMacVendor() {
-		return macVendor;
-	}
-
-
-
-	public void setMacVendor(String macVendor) {
-		this.macVendor = macVendor;
-	}
-
+	
 
 	private List<Integer> ports ;
 	private String macAddress,macVendor, hostName;
@@ -24,11 +15,11 @@ public class Host {
 	
 	@Override
 	public String toString() {
-	    return "Host: " + address.toString().substring(1) 
-		    + "\nHostname: " + hostName
-		    + "\nmacAddress: " + macAddress  
-		    + "\nmacVendor: " + macVendor 
-		    + "\nports= " + ports + "\n";
+	    return "Host IP: " + address.toString().substring(1) 
+		    + getHostName().equals(null)?"\nHostname: " + getHostName():""
+		    + "\nmacAddress: " + getMacAddress()  
+		    + "\nmacVendor: " + getMacVendor() 
+		    + "\nports= " + getPorts() + "\n";
 	}
 
 
@@ -40,9 +31,22 @@ public class Host {
 		totalHosts++;
 	}
 	
+	public String getMacVendor() {
+	    	if(this.macVendor == null) {return "Not found";}
+	    	else return macVendor;
+	}
+
+
+
+	public void setMacVendor(String macVendor) {
+		this.macVendor = macVendor;
+	}
+
+	
 	
 	public String getHostName() {
-	    return hostName;
+	    if(this.hostName == null) {return "Not found";}
+	    else return hostName;
 	}
 
 
@@ -51,13 +55,6 @@ public class Host {
 	    this.hostName = hostnm;
 	}
 
-
-
-	
-	
-	
-	
-	
 
 
 
@@ -82,7 +79,8 @@ public class Host {
 
 
 	public String getMacAddress() {
-		return macAddress;
+	    if(this.macAddress == null) {return "Not found";}
+	    else return this.macAddress;
 	}
 
 

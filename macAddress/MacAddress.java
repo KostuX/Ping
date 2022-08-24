@@ -94,7 +94,7 @@ public class MacAddress {
 		String s[] = st.split("\t");
 		
 		
-	    if(s[0].equals(str)){host.setMacVendor(s[1]);}
+	    if(s[0].equals(str)){host.setMacVendor(s[1]); }
 	    }
 	    
 	} catch (IOException e) {e.printStackTrace();
