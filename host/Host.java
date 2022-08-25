@@ -1,6 +1,7 @@
 package host;
 
 import java.net.InetAddress;
+import java.util.HashMap;
 import java.util.List;
 
 public class Host {
@@ -8,7 +9,7 @@ public class Host {
 	private InetAddress address;
 	
 
-	private List<Integer> ports ;
+	private HashMap<Integer, String> ports ;
 	private String macAddress,macVendor, hostName;
 
 	public static int totalHosts;
@@ -73,12 +74,12 @@ public class Host {
 	}
 
 
-	public List<Integer> getPorts() {
+	public HashMap<Integer,String> getPorts() {
 		return ports;
 	}
 
 
-	public void setPorts(List<Integer> ports) {
+	public void setPorts(HashMap<Integer,String> ports) {
 		this.ports = ports;
 	}
 

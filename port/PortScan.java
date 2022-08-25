@@ -2,7 +2,9 @@ package port;
 
 import java.net.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import host.Host;
 
@@ -17,7 +19,7 @@ public class PortScan {
 
   public  void  portScanner(Host host){
       
-      List<Integer> openPorts = new ArrayList<>();
+      HashMap<Integer, String> openPorts = new HashMap<>();
 
       InetAddress inAddress = host.getAddress();
 
@@ -41,7 +43,8 @@ while(counter > 0)
         scannerSocket.connect(new InetSocketAddress(inAddress, portNr[i]),50);
         scannerSocket.close();
         System.out.println(inAddress.toString().substring(1) + ": "+ portNr[i]+ "\t\t"+ portName(portNr[i]));
-        openPorts.add(portNr[i]);
+        openPorts.put(portNr[i], portName(portNr[i]));
+        // openPorts.add(portNr[i])
       }catch(Exception e)
       {
      //e.printStackTrace();
