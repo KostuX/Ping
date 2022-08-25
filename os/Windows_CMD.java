@@ -59,8 +59,8 @@ public class Windows_CMD {
 	    
 	    e.printStackTrace();
 	}
-        if(arr[1].equals(hostAddress)) {host.setHostName("Not Found"); }
-        else  {host.setHostName(arr[1].toString());}
+       // if(arr[1].equals(hostAddress)) {host.setHostName(null); }
+	if(!arr[1].equals(hostAddress)) {host.setHostName(arr[1].toString());}
     }
     
     

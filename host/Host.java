@@ -15,10 +15,15 @@ public class Host {
 	
 	@Override
 	public String toString() {
+	    
+	    String hostname = getHostName() == null?"":"\nHostname: " + getHostName();
+	    String macAddress = getMacAddress() == null?"":"\nmacAddress: " + getMacAddress();
+	    String macVendor = getMacVendor() == null?"":"\nmacVendor: " + getMacVendor() ;
+	    
 	    return "Host IP: " + address.toString().substring(1) 
-		    + getHostName().equals(null)?"\nHostname: " + getHostName():""
-		    + "\nmacAddress: " + getMacAddress()  
-		    + "\nmacVendor: " + getMacVendor() 
+		    + hostname
+		    + macAddress
+		    + macVendor
 		    + "\nports= " + getPorts() + "\n";
 	}
 
@@ -32,8 +37,8 @@ public class Host {
 	}
 	
 	public String getMacVendor() {
-	    	if(this.macVendor == null) {return "Not found";}
-	    	else return macVendor;
+	    	
+	    	return macVendor;
 	}
 
 
@@ -45,8 +50,8 @@ public class Host {
 	
 	
 	public String getHostName() {
-	    if(this.hostName == null) {return "Not found";}
-	    else return hostName;
+	    
+	    return hostName;
 	}
 
 
@@ -79,8 +84,8 @@ public class Host {
 
 
 	public String getMacAddress() {
-	    if(this.macAddress == null) {return "Not found";}
-	    else return this.macAddress;
+	    
+	     return this.macAddress;
 	}
 
 
