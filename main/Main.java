@@ -22,7 +22,7 @@ package main;
 import iPv4.*;
 import port.PortScan;
 import os.*;
-import helper.*;
+//import helper.*;
 
 import java.net.*;
 import java.util.Date;
