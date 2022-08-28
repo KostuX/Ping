@@ -26,7 +26,7 @@ import os.*;
 
 import java.net.*;
 import java.util.Date;
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +47,7 @@ int scanHosts = 1;
 int timeout =500;
 
 	
-SimpleDateFormat formatTime = new SimpleDateFormat("HH:mm:ss:SSS");
+
 Date startTime = new java.util.Date();
 	  
 System.out.println("\n\t --- " + startTime +" ---" );

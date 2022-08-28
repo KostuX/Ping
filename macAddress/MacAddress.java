@@ -2,10 +2,6 @@ package macAddress;
 
 import java.io.*;
 import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-
 import host.Host;
 public class MacAddress {
     
@@ -30,8 +26,8 @@ public class MacAddress {
  public static boolean ping3(String host) throws IOException, InterruptedException {
         boolean isWindows = System.getProperty("os.name").toLowerCase().contains("win");
 
-        ProcessBuilder processBuilder = new ProcessBuilder("ping", isWindows ? "-n" : "-c", "1", host);
-        Process proc = processBuilder.start();
+        new ProcessBuilder("ping", isWindows ? "-n" : "-c", "1", host).start();
+       // Process proc = processBuilder.start();
 
        // int returnVal = proc.waitFor();
         return true;
