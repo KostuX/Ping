@@ -9,7 +9,7 @@ public class Host {
 	private InetAddress address;
 	
 
-	private HashMap<Integer, String> ports ;
+	public HashMap<Integer, String> ports ;
 	private String macAddress,macVendor, hostName;
 
 	public static int totalHosts;
@@ -25,7 +25,7 @@ public class Host {
 		    + hostname
 		    + macAddress
 		    + macVendor
-		    + "\nports= " + getPorts() + "\n";
+		    + "\nports= " + getPorts().entrySet() + "\n";
 	}
 
 
@@ -75,13 +75,13 @@ public class Host {
 
 
 	public HashMap<Integer,String> getPorts() {
-		return ports;
+		return this.ports;
 	}
 
 
-	public void setPorts(HashMap<Integer,String> ports) {
-		this.ports = ports;
-	}
+	
+	  public void setPorts(HashMap<Integer,String> ports) { this.ports = ports; }
+	 
 
 
 	public String getMacAddress() {

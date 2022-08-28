@@ -77,7 +77,7 @@ public class MacAddress {
 		 
 		 // System.exit(0);
 	   
-        File file = new File("filename.txt");
+        File file = new File("mac_vendor.txt");
  
         BufferedReader br = null;
 	try {

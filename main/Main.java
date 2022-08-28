@@ -3,10 +3,12 @@ package main;
 
 
 //@todo;
+//add response time 
 //get own ip;
 //get own network range;
 //get mac address vendor
 //get process for which have open specific port
+// read ports from file
 
 //threads
 
@@ -20,6 +22,7 @@ package main;
 import iPv4.*;
 import port.PortScan;
 import os.*;
+import helper.*;
 
 import java.net.*;
 import java.util.Date;
@@ -36,9 +39,11 @@ public static void main(String[] args) throws UnknownHostException, IOException,
 	
 PortScan portScan = new PortScan();
 
+
+
 List<Host> onlineHosts = new ArrayList<>();	
 String ipString = "192.168.0.1";
-int scanHosts = 10;
+int scanHosts = 1;
 int timeout =500;
 
 	
@@ -47,7 +52,6 @@ Date startTime = new java.util.Date();
 	  
 System.out.println("\n\t --- " + startTime +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
-
 
 
 
