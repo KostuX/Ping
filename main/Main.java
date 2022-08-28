@@ -22,7 +22,7 @@ package main;
 import iPv4.*;
 import port.PortScan;
 import os.*;
-//import helper.*;
+
 
 import java.net.*;
 import java.util.Date;
@@ -80,14 +80,7 @@ onlineHosts.parallelStream().forEach(host->portScan.portScanner(host));
 
 
 
-
-
-
-
-
-
-
-System.out.println("\nSummary\n");
+System.err.println("\nSummary\n");
 onlineHosts.forEach(System.out::println);
 
 System.out.println("\n\t\t --- The end ---\n");
