@@ -44,7 +44,7 @@ PortScan portScan = new PortScan();
 
 
 List<Host> onlineHosts = new ArrayList<>();	
-String ipString = "127.0.0.1";
+String ipString = "192.168.1.33";
 int scanHosts = 1;
 int timeout =500;
 
@@ -52,15 +52,17 @@ int timeout =500;
 
 Date startTime = new java.util.Date();
 
-test();
+
 	  
 System.out.println("\n\t --- " + startTime +" ---" );
 System.out.println("\t\t --- Scann Started ---" );
 
+System.out.println("Local Ip: " + iPv4.MyIp.getLocalIP() +"\\"+ iPv4.MyIp.getLocalIpPrefixLength());
+System.out.println("Public Ip: " + iPv4.MyIp.getPublicIP());
 
 
 // get hosts   
-System.out.println("Getting IPs..."); 
+System.out.println("\nGetting IPs..."); 
 IPv4.getIPs(ipString, scanHosts, timeout).parallelStream().forEach(address-> {onlineHosts.add(new Host(address));});
 
 System.out.println("Found: " + Host.totalHosts +"\n");
@@ -90,23 +92,6 @@ onlineHosts.forEach(System.out::println);
 System.out.println("\n\t\t --- The end ---\n");
 time.TimeHelper.printTimeLapsed(startTime);
 
-}
-
-public static void test() throws IOException {
-    try (final DatagramSocket datagramSocket = new DatagramSocket()) {
-	    datagramSocket.connect(InetAddress.getByName("8.8.8.8"), 12345);
-	   System.out.println(datagramSocket.getLocalAddress().getHostAddress()); 
-	   
-	   String localHost = datagramSocket.getLocalAddress().getHostAddress();
-	   NetworkInterface networkInterface = NetworkInterface.getByInetAddress( InetAddress.getByName(localHost));
-	  System.out.println( networkInterface.getInterfaceAddresses().get(0).getNetworkPrefixLength());
-	}
-    
-    String urlString = "http://checkip.amazonaws.com/";
-    URL url = new URL(urlString);
-    try (BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()))) {
-        System.out.println(br.readLine());
-    }
 }
 
 }
