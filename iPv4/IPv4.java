@@ -35,9 +35,7 @@ public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut 
 		return true;
 	})
 	.collect(Collectors.toList());
-		
-	
-	
+
 	return ipReachable;
 	} // end of getIP method
 
@@ -46,6 +44,8 @@ public static List<InetAddress> getIPs(String ipAddress, int range, int timeOut 
         long result = 0;
         for (byte octet : octets) {
             result <<= 8;
+            
+        
             result |= octet & 0xff;
         }
         return result;

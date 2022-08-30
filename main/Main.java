@@ -4,17 +4,22 @@ package main;
 
 //@todo;
 
-//get own ip;
+//get process for which have open specific port
+//https://www.printsupportcenter.com/hc/en-us/articles/115003386949-Determine-which-program-uses-or-blocks-a-port
+//C:\Users\My>netstat -ano -p tcp |find "192.168.0.8:139" 
+//tasklist /svc /FI "PID eq 488"
+
+
+
+
 //get own network range;
 
-//get process for which have open specific port
+
 //add response time 
 
 
 
-//https://www.printsupportcenter.com/hc/en-us/articles/115003386949-Determine-which-program-uses-or-blocks-a-port
-//C:\Users\My>netstat -ano -p tcp |find "192.168.0.8:139" 
-//tasklist /svc /FI "PID eq 488"
+
 
 
 
@@ -25,16 +30,13 @@ import os.*;
 
 import java.net.*;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.ArrayList;
 import java.util.List;
 
 
 import host.Host;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Main{
 public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
@@ -44,7 +46,7 @@ PortScan portScan = new PortScan();
 
 
 List<Host> onlineHosts = new ArrayList<>();	
-String ipString = "192.168.1.33";
+String ipString = iPv4.MyIp.getLocalIP();
 int scanHosts = 1;
 int timeout =500;
 
@@ -61,6 +63,7 @@ System.out.println("Local Ip: " + iPv4.MyIp.getLocalIP() +"\\"+ iPv4.MyIp.getLoc
 System.out.println("Public Ip: " + iPv4.MyIp.getPublicIP());
 
 
+
 // get hosts   
 System.out.println("\nGetting IPs..."); 
 IPv4.getIPs(ipString, scanHosts, timeout).parallelStream().forEach(address-> {onlineHosts.add(new Host(address));});
@@ -69,8 +72,8 @@ System.out.println("Found: " + Host.totalHosts +"\n");
 
 
 // add Hostname
-System.out.println("Getting HostNames..." );
-onlineHosts.parallelStream().forEach(t->{ Windows_CMD.getHostName(t); });
+System.out.println("Getting HostNames..." +"TODO" );
+//onlineHosts.parallelStream().forEach(t->{ Windows_CMD.getHostName(t); });
 
 
 // add MAC address

@@ -61,7 +61,7 @@ public class PortScan {
        
         openPorts.put(portList_Known[i], portName(portList_Known[i]));//    .put(portList_Known[i], portName(portList_Known[i]));
        
-        System.out.println(inAddress.toString().substring(1) + ": "+ portList_Known[i] + "\t"+ portHashMap.get(portList_Known[i]));
+        System.out.println(inAddress.toString().substring(1) + ": "+ portList_Known[i] + "\t"+ portHashMap.get(portList_Known[i]) + " \t\t"+test.Test.getProgramByPID(test.Test.getPidByPort(portList_Known[i])));
      
       }catch(Exception e){}
     	//finally{counter--;}
