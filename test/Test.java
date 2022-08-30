@@ -1,8 +1,13 @@
 package test;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import os.*;
 
@@ -13,7 +18,7 @@ public class Test {
 
 	
 	
-	System.out.println(getProgramByPID(getPidByPort(5060)));
+	System.out.println(getProgramByPID(getPidByPort(139)));
 
     }
     
@@ -24,6 +29,16 @@ public class Test {
 	 
 	 
  String ar[] = arr.split("\t");
+ List<String> lStr = Arrays.asList(ar);
+
+ 
+ Stream.of(lStr.toString())
+		    .flatMap(Pattern.compile("\n")::splitAsStream) 
+		 
+		   .map(t -> t.replaceAll(" \\s+", " * "))
+		  // .filter(t->!t.contains("  "))
+		   
+		   .forEach(t->System.out.println("\n"+t));
  
  for (int i = 0; i < ar.length; i++) {
      
