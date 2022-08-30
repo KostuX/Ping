@@ -32,13 +32,16 @@ public class Test {
  List<String> lStr = Arrays.asList(ar);
 
  
- Stream.of(lStr.toString())
-		    .flatMap(Pattern.compile("\n")::splitAsStream) 
+String[] s = (String[]) lStr.stream()
+		   .flatMap(Pattern.compile("\n")::splitAsStream) 
+		   .map(t -> t.replaceAll(" \\s+", "\t"))
+		   .map(t-> t.replaceAll(", ",""))
+		   .toArray();
+		   
 		 
-		   .map(t -> t.replaceAll(" \\s+", " * "))
 		  // .filter(t->!t.contains("  "))
 		   
-		   .forEach(t->System.out.println("\n"+t));
+		  // .forEach(t->System.out.println("\n"+t));
  
  for (int i = 0; i < ar.length; i++) {
      
