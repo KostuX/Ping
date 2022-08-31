@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -24,42 +25,21 @@ public class Test {
     
     public static String getProgramByPID(int pid) {
 	
-	
-	 String arr = Windows_CMD.run_CMD("tasklist ");
+	 String arr = Windows_CMD.run_CMD("tasklist");	
 	 
-	 
- String ar[] = arr.split("\t");
- List<String> lStr = Arrays.asList(ar);
+	String ar[] = arr.split("\t");
+	// List<String> lStr = Arrays.asList(ar);
 
+	 String delim_1 = "\t";
  
-String[] s = (String[]) lStr.stream()
+	 String stage1 =  Arrays.stream(ar)
 		   .flatMap(Pattern.compile("\n")::splitAsStream) 
-		   .map(t -> t.replaceAll(" \\s+", "\t"))
-		   .map(t-> t.replaceAll(", ",""))
-		   .toArray();
-		   
-		 
-		  // .filter(t->!t.contains("  "))
-		   
-		  // .forEach(t->System.out.println("\n"+t));
- 
- for (int i = 0; i < ar.length; i++) {
-     
-
-if(ar[i].contains(" "+pid+" ")) {
-    
-    
-    
-String tmp = ar[i].substring(0,ar[i].indexOf("  "));
-
-String[] str = tmp.split("\t");
-return str[0];
-
-}
-    
-}
-return null;
-	
+		   .map(t -> t.replaceAll(" \\s+", delim_1))
+		   .filter(t->t.contains(delim_1+pid+" "))
+		   .map(t->t.substring(0, t.indexOf(delim_1)))
+		 //only one result must be at this stage but just in case use "Or:" as delimiter/seperator
+		   .collect(Collectors.joining(" Or: "));
+	 return stage1; 
 	
     }
     
