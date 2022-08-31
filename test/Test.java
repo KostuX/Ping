@@ -20,27 +20,19 @@ public class Test {
 	
 	
 	System.out.println(getProgramByPID(getPidByPort(139)));
+	
+	
 
     }
     
     public static String getProgramByPID(int pid) {
-	
-	 String arr = Windows_CMD.run_CMD("tasklist");	
-	 
-	String ar[] = arr.split("\t");
-	// List<String> lStr = Arrays.asList(ar);
 
-	 String delim_1 = "\t";
- 
-	 String stage1 =  Arrays.stream(ar)
+	 return  Arrays.stream( Windows_CMD.run_CMD("tasklist").split("\t"))
 		   .flatMap(Pattern.compile("\n")::splitAsStream) 
-		   .map(t -> t.replaceAll(" \\s+", delim_1))
-		   .filter(t->t.contains(delim_1+pid+" "))
-		   .map(t->t.substring(0, t.indexOf(delim_1)))
-		 //only one result must be at this stage but just in case use "Or:" as delimiter/seperator
-		   .collect(Collectors.joining(" Or: "));
-	 return stage1; 
-	
+		   .map(t -> t.replaceAll(" \\s+", "\t"))
+		   .filter(t->t.contains("\t"+pid+" "))
+		   .map(t->t.substring(0, t.indexOf("\t")))
+		   .collect(Collectors.joining(" Or: ")); //only one result must be at this stage but just in case use "Or:" as delimiter/seperator		
     }
     
     
